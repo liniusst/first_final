@@ -51,20 +51,21 @@ print('''Choose character set for password from these :
 while True:
     try:
         selected_mode = int(input("Password mode: "))
-        if selected_mode > 3:
-            print("Warning! Only 3 modes are available")
+        if selected_mode > 3 or selected_mode < 1:
+            print("Only 3 modes are available", tag="Warning!", tag_color="red", color="white")
             continue
     except ValueError:
-        print("Warning! Select password mode 1-3")
+        print("Select password mode 1-3", tag="Warning!", tag_color="red", color="white")
         continue
 
     while True:
         try:
             input_password_lenght = int(input("Password lenght: "))
-            if type(input_password_lenght) != int:
+            if type(input_password_lenght) != int or input_password_lenght < 6:
+                print("Password lenght should be at least 6 char lenght", tag="Warning!", tag_color="red", color="white")
                 continue
         except ValueError:
-            print('Warning! Password lenght should be integer')
+            print("Password lenght should be integer", tag="Warning!", tag_color="red", color="white")
             continue
         break
 
@@ -78,8 +79,6 @@ while True:
         password = StongPassword(password_len= input_password_lenght)
     else:
         print("Only 3 modes are available!")
-
-    # print("Hello world", tag='success', tag_color='green', color='white')
 
     print(f"Generated password: {password.get_random_password()}", tag="success", tag_color="green", color="white")
     break    
