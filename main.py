@@ -6,7 +6,7 @@ from print_color import print
 
 logging.basicConfig(level=logging.DEBUG,filename='data.log', filemode='a', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
 
-class PasswordGenerator:
+class PasswordGenerator():
     """Basic generator for all classes where get password lenght and base list by different password mode"""
 
     def __init__(self, password_len: int, base: List[str]) -> None:
@@ -21,7 +21,7 @@ class PasswordGenerator:
             return result_str
         except Exception as error_code:
             print(error_code)
-    
+
 class EasyToSay(PasswordGenerator):
     """Easy to say - Avoid numbers and special characters"""
 
