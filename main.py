@@ -14,8 +14,8 @@ class PasswordGenerator():
 
     def get_random_password(self) -> str:
         """Generate random password from base list (differents by selected password mode) and with given password lenght"""
-        result_str = ''.join(random.choice(self.base) for _ in range(self.password_len))
-        return result_str
+        result = ''.join(random.choice(self.base) for _ in range(self.password_len))
+        return result
 
 class EasyToSay(PasswordGenerator):
     """Easy to say - Avoid numbers and special characters"""
@@ -41,6 +41,12 @@ class SelfGenerated(PasswordGenerator):
         base = string.ascii_letters + string.digits + string.punctuation
         random_len = random.choice(range(8, 20))
         super().__init__(password_len = random_len, base = base)
+
+def print_to_file(path, result):
+    file = open(path, 'a')
+    file.write(f"{result}\n")
+    file.close()
+
 
 print_colored("-" * 65, color="yellow")
 print("Select one of these modes for yout password :")
@@ -89,5 +95,14 @@ while True:
         break
     else:
         print("Only 3 modes are available!")
-    print_colored(f"Generated password: {password.get_random_password()}", tag="success", tag_color="green", color="white")
+        
+    passwordas = password.get_random_password()
+    print_to_file(path= 'passwords.txt', result= passwordas)
+    print_colored(f"Generated password: {passwordas}", tag="success", tag_color="green", color="white")
+    # print_to_file(path= 'passwords.txt', result= password.get_random_password())
+    # a = SavePassword()
+    # a.print_to_file(path= 'passwords.txt', result= password.get_random_password())
+    # print_to_file(path= 'passwords.txt', result= password.get_random_password())
     break
+
+# print_to_file(path= 'passwords.txt', result= password.get_random_password())
