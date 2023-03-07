@@ -4,7 +4,7 @@ import logging
 from typing import List
 from print_color import print
 
-logging.basicConfig(level=logging.DEBUG,filename='data.log', filemode='w', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
+logging.basicConfig(level=logging.DEBUG,filename='data.log', filemode='a', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
 
 class PasswordGenerator:
     """Basic generator for all classes where get password lenght and base list by different password mode"""
@@ -43,7 +43,7 @@ class StongPassword(PasswordGenerator):
         base = string.ascii_letters + string.digits + string.punctuation
         super().__init__(password_len = password_len, base = base)
 
-print('''Choose character set for password from these :
+print('''Select one of these modes for yout password :
         1. Easy to say (Avoid numbers and special characters)
         2. Easy to read (Avoid special characters)
         3. Strong password (Any numbers, chars and speial characters)''')
@@ -61,8 +61,8 @@ while True:
     while True:
         try:
             input_password_lenght = int(input("Password lenght: "))
-            if type(input_password_lenght) != int or input_password_lenght < 6:
-                print("Password lenght should be at least 6 char lenght", tag="Warning!", tag_color="red", color="white")
+            if type(input_password_lenght) != int or input_password_lenght < 8:
+                print("Password lenght should be at least 8 char lenght", tag="Warning!", tag_color="red", color="white")
                 continue
         except ValueError:
             print("Password lenght should be integer", tag="Warning!", tag_color="red", color="white")
@@ -71,14 +71,11 @@ while True:
 
     if selected_mode == 1:
         password = EasyToSay(password_len= input_password_lenght)
-
     elif selected_mode == 2:
         password = EasyToRead(password_len= input_password_lenght)
-
     elif selected_mode == 3: 
         password = StongPassword(password_len= input_password_lenght)
     else:
         print("Only 3 modes are available!")
-
     print(f"Generated password: {password.get_random_password()}", tag="success", tag_color="green", color="white")
-    break    
+    break
