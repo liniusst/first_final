@@ -2,6 +2,7 @@ import random
 import string
 import logging
 from typing import List
+from print_color import print
 
 logging.basicConfig(level=logging.DEBUG,filename='data.log', filemode='w', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
 
@@ -42,73 +43,43 @@ class StongPassword(PasswordGenerator):
         base = string.ascii_letters + string.digits + string.punctuation
         super().__init__(password_len = password_len, base = base)
 
-# def final_password(mode: int, pwd_lenght: int) -> str:
-#     if mode == 1:
-#         password = EasyToSay(password_len= pwd_lenght)
-#         password = password.get_random_password()
-#     elif mode == 2:
-#         password = EasyToRead(password_len= pwd_lenght)
-#         password = password.get_random_password()
-#     elif mode == 3: 
-#         password = StongPassword(password_len= pwd_lenght)
-#         password = password.get_random_password()
-#     else:
-#         print("Only 3 modes are available!")
-#     return password
-
-# print('''Choose character set for password from these :
-#          1. Easy to say (Avoid numbers and special characters)
-#          2. Easy to read (Avoid special characters)
-#          3. Strong password (Any numbers, chars and speial characters)''')
-
-# try:
-#     input_password_lenght = int(input("Password lenght: "))
-#     selected_mode = int(input("Select password mode: "))
-#     print(final_password(mode= selected_mode, pwd_lenght= input_password_lenght))
-# except ValueError:
-#     print("klaida")
-
-
 print('''Choose character set for password from these :
         1. Easy to say (Avoid numbers and special characters)
         2. Easy to read (Avoid special characters)
-        3. Strong password (Any numbers, chars and speial characters)
-        4. Exit''')
+        3. Strong password (Any numbers, chars and speial characters)''')
 
 while True:
     try:
         selected_mode = int(input("Password mode: "))
-        input_password_lenght = int(input("Password lenght: "))
-        
+        if selected_mode > 3:
+            print("Warning! Only 3 modes are available")
+            continue
     except ValueError:
-        print("Select password mode 1-3 ant enter your choice")
+        print("Warning! Select password mode 1-3")
         continue
-        
-    # try:
-    #     input_password_lenght = int(input("Password lenght: "))
-    # except ValueError:
-    #     print("Password lenght. For example 8 or 12")
-    #     continue
 
-    try:
-        if selected_mode == 1:
-            password = EasyToSay(password_len= input_password_lenght)
-            password = password.get_random_password()
+    while True:
+        try:
+            input_password_lenght = int(input("Password lenght: "))
+            if type(input_password_lenght) != int:
+                continue
+        except ValueError:
+            print('Warning! Password lenght should be integer')
+            continue
+        break
 
-        elif selected_mode == 2:
-            password = EasyToRead(password_len= input_password_lenght)
-            password = password.get_random_password()
+    if selected_mode == 1:
+        password = EasyToSay(password_len= input_password_lenght)
 
-        elif selected_mode == 3: 
-            password = StongPassword(password_len= input_password_lenght)
-            password = password.get_random_password()
-        else:
-            print("Only 3 modes are available!")
-    
-        print(password)
-        break    
-    except Exception as error_code:
-        logging.error(error_code)
+    elif selected_mode == 2:
+        password = EasyToRead(password_len= input_password_lenght)
 
-        # print(password)
-        # break
+    elif selected_mode == 3: 
+        password = StongPassword(password_len= input_password_lenght)
+    else:
+        print("Only 3 modes are available!")
+
+    # print("Hello world", tag='success', tag_color='green', color='white')
+
+    print(f"Generated password: {password.get_random_password()}", tag="success", tag_color="green", color="white")
+    break    
