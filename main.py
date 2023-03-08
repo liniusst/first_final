@@ -55,7 +55,7 @@ while True:
         selected_mode = int(input("Select password mode: "))
         if selected_mode > 4 or selected_mode < 1:
             logging.error("Select is out of range. Range is 1-4")
-            print_colored("Only 3 modes are available", tag="Warning!", tag_color="red", color="white")
+            print_colored("Only 4 modes are available", tag="Warning!", tag_color="red", color="white")
             continue
         elif selected_mode == 4:
             password = SelfGenerated()
@@ -87,7 +87,6 @@ while True:
         password = StongPassword(password_len= input_password_lenght)
     elif selected_mode == 4:
         break
-    else:
-        print("Only 3 modes are available!")
+                
     print_colored(f"Generated password: {password.get_random_password()}", tag="success", tag_color="green", color="white")
     break
