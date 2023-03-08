@@ -42,12 +42,6 @@ class SelfGenerated(PasswordGenerator):
         random_len = random.choice(range(8, 20))
         super().__init__(password_len = random_len, base = base)
 
-def print_to_file(path, result):
-    file = open(path, 'a')
-    file.write(f"{result}\n")
-    file.close()
-
-
 print_colored("-" * 65, color="yellow")
 print("Select one of these modes for yout password :")
 print("1. Easy to say (Avoid numbers and special characters)")
@@ -95,14 +89,5 @@ while True:
         break
     else:
         print("Only 3 modes are available!")
-        
-    passwordas = password.get_random_password()
-    print_to_file(path= 'passwords.txt', result= passwordas)
-    print_colored(f"Generated password: {passwordas}", tag="success", tag_color="green", color="white")
-    # print_to_file(path= 'passwords.txt', result= password.get_random_password())
-    # a = SavePassword()
-    # a.print_to_file(path= 'passwords.txt', result= password.get_random_password())
-    # print_to_file(path= 'passwords.txt', result= password.get_random_password())
+    print_colored(f"Generated password: {password.get_random_password()}", tag="success", tag_color="green", color="white")
     break
-
-# print_to_file(path= 'passwords.txt', result= password.get_random_password())
