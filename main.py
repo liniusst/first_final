@@ -69,7 +69,7 @@ while True:
     while True:
         try:
             input_password_lenght = int(input("Password lenght: "))
-            if isinstance(input_password_lenght, int) == int or input_password_lenght < 8:
+            if isinstance(input_password_lenght, int) != True or input_password_lenght < 8:
                 logging.error("Bad passworod lenght. Minimum lenght is 8")
                 print_colored("Password lenght should be at least 8 char lenght", tag="Warning!", tag_color="red", color="white")
                 continue
