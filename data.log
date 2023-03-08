@@ -105,3 +105,7 @@
 08/03/2023 18:20:02 - root - ERROR - Bad passworod lenght. Minimum lenght is 8
 08/03/2023 18:20:09 - root - ERROR - Select is out of range. Range is 1-4
 08/03/2023 18:20:14 - root - ERROR - Bad passworod lenght. Minimum lenght is 8
+08/03/2023 18:40:57 - root - ERROR - Bad passworod lenght. Minimum lenght is 8
+08/03/2023 18:49:55 - root - ERROR - Bad passworod lenght. Minimum lenght is 8
+08/03/2023 18:50:04 - root - ERROR - ValueError by inputing password lenght
+08/03/2023 18:50:12 - root - ERROR - Bad passworod lenght. Minimum lenght is 8

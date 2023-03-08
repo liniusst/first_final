@@ -6,3 +6,4 @@ Password generator with different modes
 2. Easy to read (Avoid special characters)
 3. Strong password (Any numbers, letters and speial characters)
 4. Let me chose for you
+
